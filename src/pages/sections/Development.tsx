@@ -1,5 +1,4 @@
-import { Box, Typography,  Paper, Chip } from '@mui/material';
-import {Grid} from '@mui/material'
+import { Box, Typography, Paper, Chip } from '@mui/material';
 import CodeIcon from '@mui/icons-material/Code';
 import WebAssetIcon from '@mui/icons-material/WebAsset';
 import StorageIcon from '@mui/icons-material/Storage';
@@ -73,9 +72,24 @@ const Development = () => {
         Technologies I Use
       </Typography>
 
-      <Grid container spacing={4} justifyContent="center" mt={4}>
+      <Box
+        sx={{
+          display: 'flex',
+          flexWrap: 'wrap',
+          justifyContent: 'center',
+          gap: 4,
+          mt: 4,
+        }}
+      >
         {technologies.map((tech, index) => (
-          <Grid item xs={12} sm={6} md={4} key={index} data-aos={tech.animation}>
+          <Box
+            key={index}
+            data-aos={tech.animation}
+            sx={{
+              flex: '1 1 280px',
+              maxWidth: 360,
+            }}
+          >
             <Paper
               elevation={4}
               sx={{
@@ -103,9 +117,9 @@ const Development = () => {
                 {tech.description}
               </Typography>
             </Paper>
-          </Grid>
+          </Box>
         ))}
-      </Grid>
+      </Box>
     </Box>
   );
 };

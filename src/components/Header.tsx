@@ -9,8 +9,8 @@ import {
   Box,
   useTheme,
   useMediaQuery,
+  ListItemButton, 
 } from '@mui/material';
-import { ListItem} from "@mui/material"
 import MenuIcon from '@mui/icons-material/Menu';
 import { useState } from 'react';
 
@@ -33,9 +33,10 @@ const Header = () => {
     <>
       <AppBar position="sticky" color="primary">
         <Toolbar>
-          <Typography variant="h6" sx={{ flexGrow: 1 }}>
+          <Typography variant="h6" sx={{ flexGrow: 1, cursor: 'pointer' }} onClick={() => handleScroll('about')}>
             DevPortfolio
           </Typography>
+
           {isMobile ? (
             <>
               <IconButton
@@ -45,16 +46,20 @@ const Header = () => {
               >
                 <MenuIcon />
               </IconButton>
+
               <Drawer
                 anchor="right"
                 open={drawerOpen}
                 onClose={() => setDrawerOpen(false)}
               >
-                <List>
+                <List sx={{ width: 250 }}>
                   {sections.map((section) => (
-                    <ListItem button key={section} onClick={() => handleScroll(section)}>
+                    <ListItemButton
+                      key={section}
+                      onClick={() => handleScroll(section)}
+                    >
                       <ListItemText primary={section.toUpperCase()} />
-                    </ListItem>
+                    </ListItemButton>
                   ))}
                 </List>
               </Drawer>

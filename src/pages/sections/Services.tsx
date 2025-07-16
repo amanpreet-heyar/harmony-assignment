@@ -1,5 +1,4 @@
 import { Box, Typography, Card, CardContent, Avatar } from '@mui/material';
-import { Grid } from '@mui/material';
 import CodeIcon from '@mui/icons-material/Code';
 import BrushIcon from '@mui/icons-material/Brush';
 import StorageIcon from '@mui/icons-material/Storage';
@@ -50,11 +49,26 @@ const Services = () => {
       <Typography variant="h3" gutterBottom textAlign="center">
         Our Services
       </Typography>
-      <Grid container spacing={4} justifyContent="center">
+
+      <Box
+        sx={{
+          display: 'flex',
+          flexWrap: 'wrap',
+          gap: 4,
+          justifyContent: 'center',
+          mt: 4,
+        }}
+      >
         {services.map((service, index) => (
-          <Grid item xs={12} sm={6} md={4} key={index}>
+          <Box
+            key={index}
+            data-aos={service.animation}
+            sx={{
+              flex: '1 1 280px',
+              maxWidth: 340,
+            }}
+          >
             <Card
-              data-aos={service.animation}
               sx={{
                 height: '100%',
                 background: service.bg,
@@ -86,9 +100,9 @@ const Services = () => {
                 <Typography variant="body2">{service.description}</Typography>
               </CardContent>
             </Card>
-          </Grid>
+          </Box>
         ))}
-      </Grid>
+      </Box>
     </Box>
   );
 };

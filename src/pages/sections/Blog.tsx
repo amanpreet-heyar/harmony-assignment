@@ -1,6 +1,4 @@
 import { Box, Typography, Card, CardContent } from '@mui/material';
-import { Grid } from "@mui/material";
-
 
 const blogPosts = [
   {
@@ -37,14 +35,33 @@ const Blog = () => {
       <Typography variant="h3" textAlign="center" gutterBottom>
         Latest Blog Posts
       </Typography>
-      <Grid container spacing={4} justifyContent="center">
+
+      {/* Flexbox Layout Instead of Grid */}
+      <Box
+        sx={{
+          display: 'flex',
+          flexWrap: 'wrap',
+          justifyContent: 'center',
+          gap: 4,
+          mt: 4,
+        }}
+      >
         {blogPosts.map((post, index) => (
-          <Grid item xs={12} sm={6} md={4} key={index}>
+          <Box
+            key={index}
+            data-aos={post.animation}
+            sx={{
+              flex: '1 1 300px', // Minimum width 300px and grows responsively
+              maxWidth: 360,
+            }}
+          >
             <Card
-              data-aos={post.animation}
+              elevation={4}
               sx={{
                 height: '100%',
                 borderRadius: 4,
+                display: 'flex',
+                flexDirection: 'column',
                 transition: 'transform 0.3s ease, box-shadow 0.3s ease',
                 '&:hover': {
                   transform: 'scale(1.03)',
@@ -52,10 +69,14 @@ const Blog = () => {
                   cursor: 'pointer',
                 },
               }}
-              elevation={4}
             >
               <CardContent>
-                <Typography variant="h6" gutterBottom color="primary">
+                <Typography
+                  variant="h6"
+                  gutterBottom
+                  color="primary"
+                  sx={{ fontWeight: 600 }}
+                >
                   {post.title}
                 </Typography>
                 <Typography variant="body2" color="text.secondary">
@@ -63,9 +84,9 @@ const Blog = () => {
                 </Typography>
               </CardContent>
             </Card>
-          </Grid>
+          </Box>
         ))}
-      </Grid>
+      </Box>
     </Box>
   );
 };
